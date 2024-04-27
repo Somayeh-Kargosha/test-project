@@ -5,12 +5,12 @@ import { HiArrowLeftCircle } from "react-icons/hi2";
 function Carousel({ slides }) {
   const [current, setCurrent] = useState(0);
 
-  const nextSlide = () => {
+  const previousSlide = () => {
     if (current === slides.length - 1) setCurrent(0);
     else setCurrent(current + 1);
   };
 
-  const previousSlide = () => {
+  const nextSlide = () => {
     if (current === 0) setCurrent(slides.length - 1);
     else setCurrent(current - 1);
   };
@@ -19,18 +19,18 @@ function Carousel({ slides }) {
     <div className="">
       <div
         style={{ transform: `translateX(-${current * 100}%)` }}
-        className="flex transition ease-out duration-40"
+        className="flex transition ease-out duration-40 flex-row-reverse"
       >
         {slides.map((s) => {
           return <img src={s} alt="carsoul" />;
         })}
       </div>
       <div className="absolute top-0 h-full w-full justify-between items-center flex text-white px-1 text-xl">
-        <button onClick={previousSlide}>
+        <button onClick={nextSlide}>
           <HiArrowRightCircle />
         </button>
         <button>
-          <HiArrowLeftCircle onClick={nextSlide} />
+          <HiArrowLeftCircle onClick={previousSlide} />
         </button>
       </div>
       <div className="absolute bottom-0 gap-3 flex justify-end w-full">
